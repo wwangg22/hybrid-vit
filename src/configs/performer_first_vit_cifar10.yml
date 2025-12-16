@@ -1,0 +1,41 @@
+# Configuration for Performer-First ViT on CIFAR-10
+# Performer layers in early positions, regular attention in later positions
+
+# Random seed for reproducibility
+seed: 42
+
+
+# Weights & Biases configuration
+wandb:
+  project: hybrid-vit-experiments
+  run_name: performer_first_vit_cifar10
+  notes: Performer-first then Regular ViT on CIFAR-10
+
+# Dataset configuration
+data:
+  dataset: cifar10
+  num_workers: 4
+
+# Model configuration
+model:
+  type: performer_first
+  img_size: 32
+  patch_size: 4
+  in_channels: 3
+  num_classes: 10
+  dim: 256
+  num_layers: 8
+  num_performer_layers: 4  # First 4 layers are Performer
+  num_heads: 8
+  ff_hidden_dim: 1024
+  dropout: 0.1
+  nb_features: 192  # Number of random features for Performer
+
+# Training configuration
+training:
+  epochs: 100
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  save_every: 10
+  output_dir: outputs/performer_first_vit_cifar10

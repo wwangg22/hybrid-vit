@@ -1,4 +1,1 @@
 Implement small hybrid Transformer models with intertwined Performer- and regular-attention lay-ers, as well as models applying Performer/regular layers followed by regular/Performer layers. Applytwo Performer variants: (a) Performer-ReLU and (b) Performer approximating softmax kernel withpositive random features. Compare these hybrid models with the regular Vision Transformer model.Use the following datasets to conduct the comparison: (a) MNIST, (b) CIFAR-10. Provide code ofyour implementation and compare also training and inference time of different variants. How doesthe accuracy of your hybrid model depend on the number of kernel features m used ? Which strategyof placing regular and Performer layers turned out to be optimal in your experiments ?
-
-so create some guidelines / next steps on what I should do. Note, i am currently using this github:
-https://github.com/lucidrains/performer-pytorch

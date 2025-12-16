@@ -1,0 +1,41 @@
+# Configuration for Regular-First ViT on MNIST
+# Regular attention layers in early positions, Performer in later positions
+
+# Random seed for reproducibility
+seed: 42
+
+
+# Weights & Biases configuration
+wandb:
+  project: hybrid-vit-experiments
+  run_name: regular_first_vit_mnist
+  notes: Regular-first then Performer ViT on MNIST
+
+# Dataset configuration
+data:
+  dataset: mnist
+  num_workers: 4
+
+# Model configuration
+model:
+  type: regular_first
+  img_size: 28
+  patch_size: 4
+  in_channels: 3
+  num_classes: 10
+  dim: 192
+  num_layers: 6
+  num_regular_layers: 3  # First 3 layers are regular attention
+  num_heads: 6
+  ff_hidden_dim: 768
+  dropout: 0.1
+  nb_features: 128  # Number of random features for Performer
+
+# Training configuration
+training:
+  epochs: 50
+  batch_size: 128
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  save_every: 10
+  output_dir: outputs/regular_first_vit_mnist

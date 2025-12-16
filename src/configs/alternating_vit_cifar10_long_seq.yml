@@ -1,0 +1,40 @@
+# Configuration for Alternating ViT on CIFAR-10 with LONGER SEQUENCE
+# Using patch_size=2 instead of 4 to quadruple the number of tokens
+# 32x32 image / 2x2 patches = 256 patches + 1 CLS = 257 tokens (vs 65 normally)
+
+# Random seed for reproducibility
+seed: 42
+
+# Weights & Biases configuration
+wandb:
+  project: hybrid-vit-experiments
+  run_name: alternating_vit_cifar10_long_seq
+  notes: Alternating ViT on CIFAR-10 with patch_size=2 (257 tokens) - Performer should be faster here!
+
+# Dataset configuration
+data:
+  dataset: cifar10
+  num_workers: 4
+
+# Model configuration
+model:
+  type: alternating
+  img_size: 32
+  patch_size: 2
+  in_channels: 3
+  num_classes: 10
+  dim: 192
+  num_layers: 6 
+  num_heads: 6
+  ff_hidden_dim: 768 
+  dropout: 0.1
+  nb_features: 128
+
+# Training configuration
+training:
+  epochs: 100
+  batch_size: 64
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  save_every: 10
+  output_dir: outputs/alternating_vit_cifar10_long_seq
